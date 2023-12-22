@@ -1,0 +1,16 @@
+services:
+  postgres-docker-1:
+    image: 'postgres:latest'
+    container_name: 'postgres-docker-1'
+    environment:
+      POSTGRES_USER: admin1
+      POSTGRES_PASSWORD: admin1
+      POSTGRES_DB: base_1
+      #comandos SQL para iniciar o nosso banco, para iniciar algumas tabelas
+    volumes:
+      #comando que roda o que defnirmos dentro deste arquivo
+      - ./initPostgre.sql:/docker-entrypoint-initdb.d/initPostgre.sql:ro
+    restart: always
+    ports:
+    #portas dos bancos
+      - '5438:5432'
